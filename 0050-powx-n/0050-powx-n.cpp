@@ -1,19 +1,26 @@
 class Solution {
 public:
     double myPow(double x, int n) {
-        if(n < 0)
-            return 1/myPositivePow(x,n);
-        return myPositivePow(x,n);
-    }
+        double ans = 1;
+        long long a = n;
+        if(a < 0)   a = -a;
 
-    double myPositivePow(double x, int n)
-    {
-        if(n == 0)
-            return 1;
-        double y = pow(x,abs(n)/2);
-        if(abs(n)%2)
-            return y * y * x;
+        while(a)
+        {
+            if(a%2 == 0)
+            {
+                x = x * x;
+                a = a/2;
+            }
+            else
+            {
+                ans = ans * x;
+                a = a - 1;
+            }
+        }
+        if(n < 0)
+            return 1/ans;
         else
-            return y * y;
+            return ans;
     }
 };
